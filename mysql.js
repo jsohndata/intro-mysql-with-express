@@ -13,6 +13,7 @@ npm install cors express
 const express = require('express')
 const mysql = require('mysql')
 
+const port = 3000
 const app = express()
 
 
@@ -26,6 +27,9 @@ mysqlConnection.connect((err) => {
     err ? console.log(err) : console.log('mysql connection!')
 })
 
+app.listen(port, () => {
+    console.log(`mysql listening to port ${port}`)
+})
 
 
 
