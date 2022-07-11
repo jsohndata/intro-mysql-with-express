@@ -17,7 +17,7 @@ create table if not exists plants_table (
 	qr_url varchar(2048),
 	img_url varchar(2048),
 	note text,
-	created_on timestamp default current_timestamp
+	created_on timestamp current_timestamp
 );
 ```
 
