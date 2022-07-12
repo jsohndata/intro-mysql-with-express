@@ -1,40 +1,78 @@
 # Create Database
 ```
-create database jsohn_plants
+CREATE DATABASE node_mysql2;
 ```
 
 # Create Table
 ```
-create table if not exists plants_table (
-	id int primary key auto_increment,
-	title varchar(255) not null,
-	common_name varchar(255) not null,
-	description text,
-	light tinytext,
-	soil tinytext,
-	water tinytext,
-	native tinytext,
-	qr_url varchar(2048),
-	img_url varchar(2048),
-	note text,
-	created_on timestamp
+CREATE TABLE IF NOT EXISTS guest_list (
+	id INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+	person_id CHAR(5) UNIQUE,
+	name_f VARCHAR(100) NOT NULL,
+	name_m VARCHAR(100) NOT NULL,
+	name_l VARCHAR(100) NOT NULL,
+	age INT(3) NOT NULL,
+	bio TEXT,
+	diet SET('vegi','omni','vega','pesc'),
+	note TINYTEXT,
+	register BOOLEAN,
+	insert_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ```
 
 # Insert into Table
 ```
-insert into plants_table (id,title, common_name, description, light, soil, water, native, qr_url, img_url, note, created_on) values (
+INSERT INTO guest_list (id, person_id, name_f, name_m, name_l, age, bio, diet, note, register ) VALUES (
 	0,
-	"Kalanchoe Millotii",
-	"Millot Kalanchoe",
-	"A small succulent shrub which can grow up to 12 inches (30 cm) tall. Leaves are ovate, hazy green with felt covering.",
-	"Bright indirect Light--avoid direct sunlight.",
-	"Well draining",
-	"Water thourghly and let it dry.",
-	"Madagascar",
+	"PID001",
+	"Abe",
 	"",
-	"https://littleprinceplants.com/wp-content/uploads/2020/09/Kalanchoe-millotii-September3-scaled-e1601058361960.jpg",
-	"found near scrub",
-	now()
+	"Bell",
+	30,
+	"Bio has text",
+	"omni",
+	"Note has tiny text",
+	true
+);
+```
+```
+INSERT INTO guest_list (id, person_id, name_f, name_m, name_l, age, bio, diet, note, register ) VALUES (
+	0,
+	"PID002",
+	"Maev",
+	"",
+	"Tail",
+	35,
+	"Maev Bio has text",
+	"vegi",
+	"Maev Note has tiny text",
+	false
+);
+```
+```
+INSERT INTO guest_list (id, person_id, name_f, name_m, name_l, age, bio, diet, note, register ) VALUES (
+	0,
+	"PID003",
+	"Mesa",
+	"",
+	"Blue",
+	4,
+	"Mesa Bio has text",
+	"omni",
+	"Mesa Note has tiny text",
+	false
+), 
+
+(
+	0,
+	"PID004",
+	"R.E.",
+	"",
+	"Vol",
+	5,
+	"R.E. Bio has text",
+	"omni",
+	"R.E. Note has tiny text",
+	false
 );
 ```
