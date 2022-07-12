@@ -38,6 +38,7 @@ app.listen(port, () => {
 });
 
 
+
 // create table
 app.get('/create-table', (request, response) => {
     const mysqlQuery = `
@@ -68,6 +69,8 @@ app.get('/create-table', (request, response) => {
     });    
 });
 
+
+
 // insert value
 app.post('/insert-value', (request, response) => {
 
@@ -84,7 +87,7 @@ app.post('/insert-value', (request, response) => {
         "Note has tiny text",
         true
     );    
-    `
+    `;    
 
     mysqlDB.query(mysqlQuery, (err, result) => {
         if(err) console.log(err)

@@ -1,9 +1,9 @@
-# Create Database
+## Create Database
 ```
 CREATE DATABASE node_mysql2;
 ```
 
-# Create Table
+## Create Table
 ```
     CREATE TABLE IF NOT EXISTS guest_list (
         id INT AUTO_INCREMENT UNIQUE NOT NULL,
@@ -23,7 +23,7 @@ CREATE DATABASE node_mysql2;
     );
 ```
 
-# Insert into Table
+## Insert into Table
 ```
 INSERT INTO guest_list (id, person_id, name_f, name_m, name_l, age, bio, diet, note, register ) VALUES (
 	0,
