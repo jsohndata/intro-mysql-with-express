@@ -3,6 +3,7 @@ touch .gitignore
     server/node_modules 
     server/package.json 
     server/package-lock.json
+    config/
     
 npm -y init
 npm install mysql2 express
