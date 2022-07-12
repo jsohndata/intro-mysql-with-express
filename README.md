@@ -5,19 +5,22 @@ CREATE DATABASE node_mysql2;
 
 # Create Table
 ```
-CREATE TABLE IF NOT EXISTS guest_list (
-	id INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
-	person_id CHAR(5) UNIQUE,
-	name_f VARCHAR(100) NOT NULL,
-	name_m VARCHAR(100) NOT NULL,
-	name_l VARCHAR(100) NOT NULL,
-	age INT(3) NOT NULL,
-	bio TEXT,
-	diet SET('vegi','omni','vega','pesc'),
-	note TINYTEXT,
-	register BOOLEAN,
-	insert_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+    CREATE TABLE IF NOT EXISTS guest_list (
+        id INT AUTO_INCREMENT UNIQUE NOT NULL,
+        person_id CHAR(6) NOT NULL UNIQUE,
+    
+        name_f VARCHAR(100) NOT NULL,
+        name_m VARCHAR(100) NOT NULL,
+        name_l VARCHAR(100) NOT NULL,
+        age INT NOT NULL,
+        bio TEXT,
+        diet SET('vegi','omni','vega','pesc'),
+        note TINYTEXT,
+        register BOOLEAN,
+    
+        insert_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (person_id)
+    );
 ```
 
 # Insert into Table
