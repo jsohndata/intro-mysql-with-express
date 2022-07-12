@@ -1,16 +1,15 @@
 /*
 touch .gitignore
-    node_modules 
-    package.json 
-    package-lock.json
+    server/node_modules 
+    server/package.json 
+    server/package-lock.json
     
 npm -y init
-npm install cors express
+npm install mysql2 express
 */
 
 // Variables and Functions
 // ***************************************
-// const { response } = require('express');
 const { response } = require('express');
 const express   = require('express');
 const mysql     = require('mysql2');
@@ -36,6 +35,7 @@ mysqlDB.connect((err) => {
 app.listen(port, () => {
     console.log(`mysql listening to port ${port}`)
 });
+
 
 // create table
 app.get('/create-table', (request, response) => {
@@ -95,7 +95,7 @@ app.post('/insert-value', (request, response) => {
 });
 
 
-
+// update
 app.put('/update-query/:pid', (request, ressponse) => {
 
     const mysqlQuery = `
