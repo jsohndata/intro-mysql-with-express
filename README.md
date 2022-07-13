@@ -50,26 +50,26 @@ INSERT INTO about_people (id, person_id, name_f, name_m, name_l, age, bio, profi
 ```
 
 
-## SELECT *
+## Select *
 `SELECT * FROM about_people;`
 
-## SELECT COL
+## Select Column
 `SELECT id, date_insert, person_id, name_f, name_m, name_l, register  FROM about_people;`
 
-## SELECT WHERE
+## Select Where
 `SELECT person_id, name_f, name_l FROM about_people WHERE register < 1;`
 
-## SELECT ORDER BY
+## Select Order By
 `SELECT person_id, name_f, name_m, name_l, register FROM about_people  ORDER BY name_f;`
 
-## SELECT WHERE ORER BY
+## Select Where Order By
 `SELECT person_id, name_f, name_l FROM about_people WHERE register = 1 ORDER BY name_l;`
 
-## SELECT WHERE ORDER BY ASC / DESC
+## Select Where Order By ASC / DESC
 `SELECT id, person_id, name_f, name_l FROM about_people WHERE register = 1 ORDER BY name_l ASC;`
 
-## UPDATE WHERE
+## Update Where
 `UPDATE about_people SET name_l = "bottty" WHERE person_id = "PID005";`
 
-## DELETE FROM WHERE
+## Delete From Where
 `DELETE FROM about_people WHERE person_id = "PID005";`
