@@ -5,77 +5,71 @@ CREATE DATABASE node_mysql2;
 
 ## Create Table
 ```
-    CREATE TABLE IF NOT EXISTS guest_list (
-        id INT AUTO_INCREMENT UNIQUE NOT NULL,
-        person_id CHAR(6) NOT NULL UNIQUE,
-    
-        name_f VARCHAR(100) NOT NULL,
-        name_m VARCHAR(100) NOT NULL,
-        name_l VARCHAR(100) NOT NULL,
-        age INT NOT NULL,
-        bio TEXT,
-        diet SET('vegi','omni','vega','pesc'),
-        note TINYTEXT,
-        register BOOLEAN,
-    
-        insert_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (person_id)
-    );
+CREATE TABLE IF NOT EXISTS about_people (
+	id INT AUTO_INCREMENT UNIQUE NOT NULL,
+	person_id CHAR(6) NOT NULL UNIQUE,
+
+	name_f VARCHAR(100) NOT NULL,
+	name_m VARCHAR(100) NOT NULL,
+	name_l VARCHAR(100) NOT NULL,
+	age INT NOT NULL DEFAULT 1,
+	bio TEXT,
+	profile_pict TINYTEXT,
+	register BOOLEAN,
+
+	date_insert TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (person_id)
+);
 ```
 
 ## Insert into Table
 ```
-INSERT INTO guest_list (id, person_id, name_f, name_m, name_l, age, bio, diet, note, register ) VALUES (
+INSERT INTO about_people (id, person_id, name_f, name_m, name_l, age, bio, profile_pict, register) VALUES (
 	0,
-	"PID001",
-	"Abe",
+	"PID010",
+	"John",
 	"",
-	"Bell",
-	30,
-	"Bio has text",
-	"omni",
-	"Note has tiny text",
+	"Dough",
+	1338,
+	"resident at JH",
+	"https://prod-api.154310543964.hellopublic.com/static/users/images/1ovWcBG0YFiYtYZ7pS5qM2Nj6YmzAwBY-thumbnail-300x300.jpg",
 	true
-);
-```
-```
-INSERT INTO guest_list (id, person_id, name_f, name_m, name_l, age, bio, diet, note, register ) VALUES (
-	0,
-	"PID002",
-	"Maev",
-	"",
-	"Tail",
-	35,
-	"Maev Bio has text",
-	"vegi",
-	"Maev Note has tiny text",
-	false
-);
-```
-```
-INSERT INTO guest_list (id, person_id, name_f, name_m, name_l, age, bio, diet, note, register ) VALUES (
-	0,
-	"PID003",
-	"Mesa",
-	"",
-	"Blue",
-	4,
-	"Mesa Bio has text",
-	"omni",
-	"Mesa Note has tiny text",
-	false
-), 
+),
 
 (
 	0,
-	"PID004",
-	"R.E.",
+	"PID007",
+	"Slack",
 	"",
-	"Vol",
-	5,
-	"R.E. Bio has text",
-	"omni",
-	"R.E. Note has tiny text",
-	false
+	"Bot",
+	999,
+	"lol computer",
+	"https://prod-api.154310543964.hellopublic.com/static/users/images/1ovWcBG0YFiYtYZ7pS5qM2Nj6YmzAwBY-thumbnail-300x300.jpg",
+	true
 );
 ```
+
+
+## SELECT *
+`SELECT * FROM about_people;`
+
+## SELECT COL
+`SELECT id, date_insert, person_id, name_f, name_m, name_l, register  FROM about_people;`
+
+## SELECT WHERE
+`SELECT person_id, name_f, name_l FROM about_people WHERE register < 1;`
+
+## SELECT ORDER BY
+`SELECT person_id, name_f, name_m, name_l, register FROM about_people  ORDER BY name_f;`
+
+## SELECT WHERE ORER BY
+`SELECT person_id, name_f, name_l FROM about_people WHERE register = 1 ORDER BY name_l;`
+
+## SELECT WHERE ORDER BY ASC / DESC
+`SELECT id, person_id, name_f, name_l FROM about_people WHERE register = 1 ORDER BY name_l ASC;`
+
+## UPDATE WHERE
+`UPDATE about_people SET name_l = "bottty" WHERE person_id = "PID005";`
+
+## DELETE FROM WHERE
+`DELETE FROM about_people WHERE person_id = "PID005";`
