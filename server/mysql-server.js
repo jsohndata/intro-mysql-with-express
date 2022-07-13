@@ -15,28 +15,25 @@ const { response } = require('express');
 const express   = require('express');
 const mysql     = require('mysql2');
 
-const port = 3000;
+const port = 3306;
 const app = express();
 
 
 const mysqlConfig = require("../config/mysql-db-config.js");
 
+// open MySQL connection
 const mysqlDB = mysql.createConnection({
     host: mysqlConfig.host,
     user: mysqlConfig.user,
     password: mysqlConfig.password,
     database: mysqlConfig.database
-});
+}).connect((err) => { err ? console.log(err) : console.log('mysql connection!')});
 
-// open MySQL connection
-mysqlDB.connect((err) => {
-    err ? console.log(err) : console.log('mysql connection!')
-});
+// Listen to Port
+app.listen(port, () => { console.log(`mysql listening to port ${port}`) });
 
-app.listen(port, () => {
-    console.log(`mysql listening to port ${port}`)
-});
-
+// Get => Root
+app.get("/", (request, response) => { response.send(`good to go`); });
 
 
 // create table
@@ -60,24 +57,17 @@ app.get('/create-table', (request, response) => {
     );
     `;
 
-    mysqlDB.query(mysqlQuery, (err, result) => {
-        if(err) console.log(err)
-        else {
-            response.send('table created');
-            mysqlDB.end();
-        }
-    });    
+    mysqlDB.query(mysqlQuery, (err, result) => { err ? response.send(err) : response.send('row created'); });
 });
 
 
-
 // insert value
-app.post('/insert-value', (request, response) => {
+app.get('/insert-value', (request, response) => {
 
     const mysqlQuery = `
     INSERT INTO guest_list (id, person_id, name_f, name_m, name_l, age, bio, diet, note, register ) VALUES (
         0,
-        00003,
+        ${request.query.pid},
         "Abe",
         "",
         "Bell",
@@ -89,29 +79,16 @@ app.post('/insert-value', (request, response) => {
     );    
     `;    
 
-    mysqlDB.query(mysqlQuery, (err, result) => {
-        if(err) console.log(err)
-        else {
-            response.send('row created');
-            mysqlDB.end();
-        }
-    });
+    mysqlDB.query(mysqlQuery, (err, result) => { err ? response.send(err) : response.send('row created'); });
 });
 
 
 // update
 app.put('/update-query/:pid', (request, ressponse) => {
-
     const mysqlQuery = `
         UPDATE guest_list SET diet =  '${request.query.title}' WHERE person_id=${request.params.pid}
     `;
 
-    mysqlDB.query(mysqlQuery, (err, result) => {
-        if(err) console.log(err)
-        else {
-            response.send(`${request.query.title} has been updated`);
-            mysqlDB.end();
-        }
-    });
+    mysqlDB.query(mysqlQuery, (err, result) => { err ? response.send(err) : response.send('row updated'); });
 });
 
