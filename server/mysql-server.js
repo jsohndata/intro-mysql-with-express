@@ -13,20 +13,21 @@ npm install mysql2 express
 // ***************************************
 const { response } = require('express');
 const express   = require('express');
-const mysql     = require('mysql2');
+const mysql     = require('mysql');
 
 const port = 3306;
 const app = express();
 
 
-const mysqlConfig = require("../config/mysql-db-config.js");
+const mysqlConfig = require("./mysql-db-config.js");
 
 // open MySQL connection
 const mysqlDB = mysql.createConnection({
     host: mysqlConfig.host,
     user: mysqlConfig.user,
     password: mysqlConfig.password,
-    database: mysqlConfig.database
+    database: mysqlConfig.database,
+    port: port
 })
 
 mysqlDB.connect((err) => { err ? console.log(err) : console.log('mysql connection!')});
@@ -59,12 +60,12 @@ app.get('/create-table', (request, response) => {
     );
     `;
 
-    mysqlDB.query(mysqlQuery, (err, result) => { err ? response.send(err) : response.send('row created'); });
+    mysqlDB.query(mysqlQuery, (err, result) => { err ? response.send(err) : response.send('create table'); });
 });
 
 
 // insert value
-app.get('/insert-value', (request, response) => {
+app.get('/insert-row', (request, response) => {
 
     const mysqlQuery = `
     INSERT INTO guest_list (id, person_id, name_f, name_m, name_l, age, bio, diet, note, register ) VALUES (
