@@ -27,7 +27,9 @@ const mysqlDB = mysql.createConnection({
     user: mysqlConfig.user,
     password: mysqlConfig.password,
     database: mysqlConfig.database
-}).connect((err) => { err ? console.log(err) : console.log('mysql connection!')});
+})
+
+mysqlDB.connect((err) => { err ? console.log(err) : console.log('mysql connection!')});
 
 // Listen to Port
 app.listen(port, () => { console.log(`mysql listening to port ${port}`) });
